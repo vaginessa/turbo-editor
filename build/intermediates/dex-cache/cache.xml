@@ -3,6 +3,15 @@
 
     <item
         is-multidex="false"
+        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/libs/juniversalchardet-1.0.3.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="22.0.1"
+        sha1="591d72211acc0b909b79c840e0b3ed9a0982d807">
+        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/juniversalchardet-1.0.3_8d4961e98a37b883874c39e847eb48a52063ad92.jar" />
+    </item>
+    <item
+        is-multidex="false"
         jar="/home/kofu/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/26.0.0-alpha1/support-annotations-26.0.0-alpha1.jar"
         jumboMode="false"
         optimize="true"
@@ -21,15 +30,6 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="22.0.1"
-        sha1="f8efd0096475e0daf054267b61544e10dc776503">
-        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.2.1_2b7acabc05fbe30fb1fe1dd3b256c57cadd7c84c.jar" />
-    </item>
-    <item
-        is-multidex="false"
         jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/com.github.gabrielemariotti.changeloglib/library/1.5.2/jars/classes.jar"
         jumboMode="false"
         optimize="true"
@@ -39,12 +39,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/turbo-editor.libraries/sharedCode/unspecified/jars/libs/markdownview-1.2.jar"
+        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
         jumboMode="false"
         optimize="true"
         revision="22.0.1"
-        sha1="99339c10104c73e038bec74a47136bde2a0f826d">
-        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/markdownview-1.2_0b41c40636ed4c967a70504bfbb30963154e30f6.jar" />
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-22.2.1_2b7acabc05fbe30fb1fe1dd3b256c57cadd7c84c.jar" />
     </item>
     <item
         is-multidex="false"
@@ -75,12 +75,12 @@
     </item>
     <item
         is-multidex="false"
-        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/turbo-editor.libraries/sharedCode/unspecified/jars/libs/juniversalchardet-1.0.3.jar"
+        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/libs/markdownview-1.2.jar"
         jumboMode="false"
         optimize="true"
         revision="22.0.1"
-        sha1="87675a9ecd5304c687d86ce2ed20616f189823ad">
-        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/juniversalchardet-1.0.3_c3d5cea143d82a5a9e6b98e6e4bad47be69bf642.jar" />
+        sha1="6dfceaa4daa04ee7ed4cdda1157e3de8ede56a90">
+        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/markdownview-1.2_109ccbd06bf9492df29689137499078e43b84545.jar" />
     </item>
     <item
         is-multidex="false"
@@ -90,24 +90,6 @@
         revision="22.0.1"
         sha1="557edd918fd41f9260963583ebf5a61a43a6b423">
         <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/commons-lang3-3.7_502e7b552e12499d0d687c14421db95beb007806.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/turbo-editor.libraries/FloatingActionButton/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="22.0.1"
-        sha1="f35e5fd455872e16450304b9232eba5688a208b8">
-        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/turbo-editor.libraries-FloatingActionButton-unspecified_8d592e67e800abf7cf160d9c13cfc65599cfc59d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/exploded-aar/turbo-editor.libraries/sharedCode/unspecified/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="22.0.1"
-        sha1="3c21b035f28a71d22d5d1339e1e8dea563fe72de">
-        <dex dex="/home/kofu/AndroidStudioProjects/turbo-editor/app/build/intermediates/pre-dexed/debug/turbo-editor.libraries-sharedCode-unspecified_712576f5b48d2b13445d293e167baa21d9f368fc.jar" />
     </item>
 
 </items>
