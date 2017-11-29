@@ -37,7 +37,7 @@ android {
     compileSdkVersion 22
     buildToolsVersion '22.0.1'
     defaultConfig {
-        applicationId "com.maskyn.fileeditor"
+        applicationId "com.chronoscoper.android.texteditor"
         minSdkVersion 11
         targetSdkVersion 22
         versionCode 47
