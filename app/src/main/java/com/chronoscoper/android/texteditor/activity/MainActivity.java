@@ -38,8 +38,8 @@ import android.provider.DocumentsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatEditText;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
@@ -66,26 +66,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.chronoscoper.android.texteditor.R;
-import com.faizmalkani.floatingactionbutton.FloatingActionButton;
-import com.spazedog.lib.rootfw4.RootFW;
-import com.spazedog.lib.rootfw4.utils.io.FileReader;
-
-import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.lang3.ArrayUtils;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import com.chronoscoper.android.texteditor.adapter.AdapterDrawer;
 import com.chronoscoper.android.texteditor.dialogfragment.ChangelogDialog;
 import com.chronoscoper.android.texteditor.dialogfragment.EditTextDialog;
@@ -118,11 +98,31 @@ import com.chronoscoper.android.texteditor.util.ViewUtils;
 import com.chronoscoper.android.texteditor.views.CustomDrawerLayout;
 import com.chronoscoper.android.texteditor.views.DialogHelper;
 import com.chronoscoper.android.texteditor.views.GoodScrollView;
+import com.faizmalkani.floatingactionbutton.FloatingActionButton;
+import com.spazedog.lib.rootfw4.RootFW;
+import com.spazedog.lib.rootfw4.utils.io.FileReader;
 
-public abstract class MainActivity extends ActionBarActivity implements IHomeActivity, FindTextDialog
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public abstract class MainActivity extends AppCompatActivity implements IHomeActivity, FindTextDialog
         .SearchDialogInterface, GoodScrollView.ScrollInterface, PageSystem.PageSystemInterface,
         PageSystemButtons.PageButtonsInterface, NumberPickerDialog.INumberPickerDialog, SaveFileDialog.ISaveDialog,
-        AdapterView.OnItemClickListener, AdapterDrawer.Callbacks, AccessoryView.IAccessoryView, EditTextDialog.EditDialogListener{
+        AdapterView.OnItemClickListener, AdapterDrawer.Callbacks, AccessoryView.IAccessoryView, EditTextDialog.EditDialogListener {
 
     //region VARIABLES
     private static final int READ_REQUEST_CODE = 42,
@@ -340,7 +340,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                 final Uri data = intent.getData();
                 final GreatUri newUri = new GreatUri(data, AccessStorageApi.getPath(this, data), AccessStorageApi.getName(this, data));
 
-               // grantUriPermission(getPackageName(), data, Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                // grantUriPermission(getPackageName(), data, Intent.FLAG_GRANT_READ_URI_PERMISSION);
                 final int takeFlags = intent.getFlags()
                         & (Intent.FLAG_GRANT_READ_URI_PERMISSION
                         | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
@@ -460,7 +460,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
         } else if (i == R.id.im_save_normaly) {
             saveTheFile(false);
 
-        }  else if (i == R.id.im_save_as) {
+        } else if (i == R.id.im_save_as) {
             saveTheFile(true);
 
         } else if (i == R.id.im_rename) {
@@ -754,8 +754,8 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                 || Intent.ACTION_PICK.equals(action)
                 && type != null) {
             // Post event
-           //newFileToOpen(new File(intent
-           //        .getData().getPath()), "");
+            //newFileToOpen(new File(intent
+            //        .getData().getPath()), "");
             Uri uri = intent.getData();
             GreatUri newUri = new GreatUri(uri, AccessStorageApi.getPath(this, uri), AccessStorageApi.getName(this, uri));
             newFileToOpen(newUri, "");
@@ -805,13 +805,13 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
         updateHandler.postDelayed(colorRunnable_duringEditing, SYNTAX_DELAY_MILLIS_LONG);
     }
 
-    private void refreshList(){
+    private void refreshList() {
         refreshList(null, false, false);
     }
 
     private void refreshList(@Nullable GreatUri thisUri, boolean add, boolean delete) {
         int max_recent_files = 15;
-        if(add)
+        if (add)
             max_recent_files--;
 
         // File paths saved in preferences
@@ -824,7 +824,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
         StringBuilder sb = new StringBuilder();
 
         // for cycle to convert paths to names
-        for(int i = 0; i < savedPaths.length; i++){
+        for (int i = 0; i < savedPaths.length; i++) {
             Uri particularUri = Uri.parse(savedPaths[i]);
             String name = AccessStorageApi.getName(this, particularUri);
             // Check that the file exist
@@ -850,7 +850,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
             //}
         }
         // if is not null, empty, we have to add something and we dont already have this uri
-        if(thisUri != null && !thisUri.getUri().equals(Uri.EMPTY) && add && !ArrayUtils.contains(savedPaths, thisUri.getUri().toString())) {
+        if (thisUri != null && !thisUri.getUri().equals(Uri.EMPTY) && add && !ArrayUtils.contains(savedPaths, thisUri.getUri().toString())) {
             sb.append(thisUri.getUri().toString()).append(",");
             greatUris.addFirst(thisUri);
         }
@@ -916,7 +916,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                             isRootRequired = !newUri.isReadable();
                             // if we cannot read the file, root permission required
                             if (isRootRequired) {
-                               readUri(newUri.getUri(), filePath, true);
+                                readUri(newUri.getUri(), filePath, true);
                             }
                             // if we can read the file associated with the uri
                             else {
@@ -971,13 +971,13 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                     }
 
                     InputStream inputStream = getContentResolver().openInputStream(uri);
-                    if(inputStream != null) {
+                    if (inputStream != null) {
                         buffer = new BufferedReader(new InputStreamReader(inputStream, encoding));
                     }
                 }
 
                 if (buffer != null) {
-                    while((line = buffer.readLine()) != null) {
+                    while ((line = buffer.readLine()) != null) {
                         stringBuilder.append(line);
                         stringBuilder.append("\n");
                     }
@@ -1011,7 +1011,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                     else
                         getSupportActionBar().setTitle(fileName);
 
-                    if(greatUri != null) {
+                    if (greatUri != null) {
                         refreshList(greatUri, true, false);
                     }
                 }
@@ -1050,8 +1050,6 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
     /**
      * When a file can't be opened
      * Invoked by the EditorFragment
-     *
-     * @param event The event called
      */
     void cannotOpenFile() {
         //
@@ -1157,7 +1155,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
         }
     }
 
-   void aFileWasSelected(GreatUri uri) {
+    void aFileWasSelected(GreatUri uri) {
         arrayAdapter.selectPosition(uri);
     }
 
@@ -1169,7 +1167,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
     //region Calls from the layout
     public void OpenFile(View view) {
 
-        if (Device.hasKitKatApi()  && PreferenceHelper.getUseStorageAccessFramework(this)) {
+        if (Device.hasKitKatApi() && PreferenceHelper.getUseStorageAccessFramework(this)) {
             // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file
             // browser.
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
@@ -1359,7 +1357,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
     @Override
     public void userDoesntWantToSave(boolean openNewFile, GreatUri newUri) {
         mEditor.fileSaved();
-        if(openNewFile)
+        if (openNewFile)
             newFileToOpen(newUri, "");
         else
             cannotOpenFile();
@@ -1381,26 +1379,26 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
     public void onEdittextDialogEnded(String result, String hint, EditTextDialog.Actions action) {
 
         if (Device.hasKitKatApi() && TextUtils.isEmpty(greatUri.getFilePath())) {
-            Uri newUri = DocumentsContract.renameDocument(getContentResolver(), greatUri.getUri(), result);
-            // if everything is ok
-            if (newUri != null) {
+            try {
+                Uri newUri = DocumentsContract.renameDocument(getContentResolver(), greatUri.getUri(), result);
+                // if everything is ok
+                if (newUri != null) {
 
-                // delete current
-                refreshList(greatUri, false, true);
+                    // delete current
+                    refreshList(greatUri, false, true);
 
-                greatUri.setUri(newUri);
-                greatUri.setFilePath(AccessStorageApi.getPath(this, newUri));
-                greatUri.setFileName(AccessStorageApi.getName(this, newUri));
+                    greatUri.setUri(newUri);
+                    greatUri.setFilePath(AccessStorageApi.getPath(this, newUri));
+                    greatUri.setFileName(AccessStorageApi.getName(this, newUri));
 
-                new SaveFileTask(this, greatUri, pageSystem.getAllText(mEditor.getText().toString()), currentEncoding, new SaveFileTask.SaveFileInterface() {
-                    @Override
-                    public void fileSaved(Boolean success) {
-                        savedAFile(greatUri, true);
-                    }
-                }).execute();
-            }
-            else {
-                Toast.makeText(this, R.string.file_cannot_be_renamed, Toast.LENGTH_SHORT).show();
+                    new SaveFileTask(this, greatUri, pageSystem
+                            .getAllText(mEditor.getText().toString()), currentEncoding,
+                            success -> savedAFile(greatUri, true)).execute();
+                } else {
+                    Toast.makeText(this, R.string.file_cannot_be_renamed, Toast.LENGTH_SHORT).show();
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException("File not found");
             }
         } else {
             File newFile = new File(greatUri.getParentFolder(), result);
@@ -1421,8 +1419,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                         savedAFile(greatUri, true);
                     }
                 }).execute();
-            }
-            else {
+            } else {
                 Toast.makeText(this, R.string.file_cannot_be_renamed, Toast.LENGTH_SHORT).show();
             }
         }
@@ -1590,7 +1587,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
                         0);
             }
             // add a padding from bottom
-            verticalScroll.setPadding(0,0,0,EditTextPadding.getPaddingBottom(context));
+            verticalScroll.setPadding(0, 0, 0, EditTextPadding.getPaddingBottom(context));
         }
 
         //region OVERRIDES
@@ -1855,8 +1852,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
             if (PreferenceHelper.getSyntaxHighlight(getContext())) {
                 setText(highlight(textToUpdate == null ? getEditableText() : Editable.Factory
                         .getInstance().newEditable(textToUpdate), textToUpdate != null));
-            }
-            else {
+            } else {
                 setText(textToUpdate == null ? getEditableText() : textToUpdate);
             }
 
@@ -1899,7 +1895,7 @@ public abstract class MainActivity extends ActionBarActivity implements IHomeAct
 
             if (!newText && editorHeight > 0) {
                 firstVisibleIndex = getLayout().getLineStart(lineUtils.getFirstVisibleLine(verticalScroll, editorHeight, lineCount));
-                lastVisibleIndex = getLayout().getLineEnd(lineUtils.getLastVisibleLine(verticalScroll, editorHeight, lineCount, deviceHeight)-1);
+                lastVisibleIndex = getLayout().getLineEnd(lineUtils.getLastVisibleLine(verticalScroll, editorHeight, lineCount, deviceHeight) - 1);
             } else {
                 firstVisibleIndex = 0;
                 lastVisibleIndex = CHARS_TO_COLOR;

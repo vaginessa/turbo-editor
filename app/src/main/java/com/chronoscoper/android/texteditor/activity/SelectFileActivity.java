@@ -24,7 +24,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -39,6 +39,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chronoscoper.android.texteditor.R;
+import com.chronoscoper.android.texteditor.adapter.AdapterDetailedList;
+import com.chronoscoper.android.texteditor.dialogfragment.EditTextDialog;
+import com.chronoscoper.android.texteditor.preferences.PreferenceHelper;
+import com.chronoscoper.android.texteditor.util.AlphanumComparator;
+import com.chronoscoper.android.texteditor.util.Build;
+import com.chronoscoper.android.texteditor.util.ThemeUtils;
 import com.faizmalkani.floatingactionbutton.FloatingActionButton;
 import com.spazedog.lib.rootfw4.RootFW;
 
@@ -52,14 +58,8 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-import com.chronoscoper.android.texteditor.adapter.AdapterDetailedList;
-import com.chronoscoper.android.texteditor.dialogfragment.EditTextDialog;
-import com.chronoscoper.android.texteditor.preferences.PreferenceHelper;
-import com.chronoscoper.android.texteditor.util.AlphanumComparator;
-import com.chronoscoper.android.texteditor.util.Build;
-import com.chronoscoper.android.texteditor.util.ThemeUtils;
-
-public class SelectFileActivity extends ActionBarActivity implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, EditTextDialog.EditDialogListener {
+public class SelectFileActivity extends AppCompatActivity
+        implements SearchView.OnQueryTextListener, AdapterView.OnItemClickListener, EditTextDialog.EditDialogListener {
     private String currentFolder;
     private ListView listView;
     private boolean wantAFile = true;
