@@ -21,35 +21,18 @@ package com.maskyn.fileeditor;
 
 import android.os.Bundle;
 
-import com.crashlytics.android.Crashlytics;
-
-import io.fabric.sdk.android.Fabric;
 import sharedcode.turboeditor.activity.MainActivity;
 
 public class HomeActivity extends MainActivity {
 
-    private AdsHelper adsHelper;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(sharedcode.turboeditor.preferences.PreferenceHelper.getSendErrorReports(this))
-            Fabric.with(this, new Crashlytics());
-        // setup the ads
-        if(!sharedcode.turboeditor.util.ProCheckUtils.isPro(this))
-            adsHelper = new AdsHelper(this);
     }
 
     @Override
     public boolean showInterstitial() {
-        if(adsHelper != null && !sharedcode.turboeditor.util.ProCheckUtils.isPro(this)) {
-            adsHelper.displayInterstitial();
-            return true;
-        }
-        else {
-            return false;
-        }
+        return false;
     }
 
 
